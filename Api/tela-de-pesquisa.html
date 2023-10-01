@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tela de Pesquisa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .search-input {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pesquisar Frases</h1>
+  <p>Insira um termo de pesquisa para encontrar frases relacionadas:</p>
+  <form class="search-input">
+    <label for="termo">Termo de Pesquisa:</label>
+    <input type="text" id="termo" name="termo" required>
+    <input type="hidden" id="token" name="token" value="">
+    <button type="button" onclick="search()">Pesquisar</button>
+  </form>
+
+  <script>
+    // Extrai o token do URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var token = urlParams.get('token');
+    
+    // Define o token no campo de entrada oculto
+    document.getElementById('token').value = token;
+
+    function search() {
+      var termo = document.getElementById('termo').value;
+      var token = document.getElementById('token').value;
+      // Redireciona para a rota de pesquisa com o termo e o token como parâmetros de consulta
+      window.location.href = '/frases/pesquisa?termo=' + termo + '&token=' + token;
+    }
+  </script>
+</body>
+</html>
