@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API de Frases</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .token-input, .router-input {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bem-vindo à API de Frases</h1>
+  <p>Esta API fornece acesso a uma coleção de frases aleatórias. Escolha o endpoint desejado e insira o token de acesso para acessar a API:</p>
+  <form class="token-input">
+    <label for="token">Token de Acesso:</label>
+    <input type="text" id="token" name="token" required>
+    <label for="router">Endpoint:</label>
+    <select id="router" name="router" required>
+      <option value="/frases/listar">Listar Frases</option>
+      <option value="/frases/random">Frase Aleatória</option>
+      <option value="/frases/pesquisa">Pesquisar Frases</option>
+    </select>
+    <button type="button" onclick="redirectToAPI()">Acessar API</button>
+  </form>
+
+  <script>
+    function redirectToAPI() {
+      var token = document.getElementById('token').value;
+      var selectedRouter = document.getElementById('router').value;
+      if (selectedRouter === "/frases/pesquisa") {
+        // Se a opção de pesquisa foi selecionada, redireciona para tela-de-pesquisa.html
+        window.location.href = 'tela-de-pesquisa.html?' + 'token=' + token;
+      } else {
+        // Redireciona para o endpoint escolhido com o token como parâmetro de consulta
+        window.location.href = selectedRouter + '?token=' + token;
+      }
+    }
+  </script>
+</body>
+</html>
